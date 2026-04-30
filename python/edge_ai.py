@@ -71,3 +71,32 @@ def detect_scene(lux, hour):
         return "Day"
     else:
         return "Evening"
+
+def update_learning(scene, lux):
+    scene_samples[scene].append(lux)
+    # Keep only last 20 samples per scene
+    if len(scene_samples[scene]) > 20:
+        scene_samples[scene].pop(0)
+    # Update learned threshold as average
+    learned_thresholds[scene] = np.mean(scene_samples[scene])
+
+def get_brightness(lux, scene):
+    threshold = learned_thresholds[scene]
+    # The brighter it is outside, the less we need indoor lights
+    ratio = lux / (threshold + 1e-6)
+    brightness = max(0, min(100, int((1 - ratio) * 100)))
+    return brightness
+
+# Feature 3: Z-score Anomaly Detection 
+def detect_anomaly(lux):
+    if len(history) < 10:
+        return False, "normal"
+    mean    = np.mean(history)
+    std     = np.std(history)
+    z_score = abs(lux - mean) / (std + 1e-6)
+    if z_score > 3:
+        if lux < mean:
+            return True, "BLACKOUT (sudden darkness)"
+        else:
+            return True, "FLASH (sudden brightness)"
+    return False, "normal"
