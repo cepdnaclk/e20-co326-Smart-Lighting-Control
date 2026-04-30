@@ -136,3 +136,26 @@ Tracks real-time and cumulative energy savings compared to a baseline.
 - Provides measurable impact of AI decisions
 
 ---
+## Summary
+
+| Feature                  | Technique Used            | Benefit                          |
+|------------------------|--------------------------|----------------------------------|
+| Scene Detection        | Rule-based               | Context awareness                |
+| Adaptive Learning      | Moving average           | Self-optimization                |
+| Brightness Control     | Mathematical scaling     | Comfort + efficiency             |
+| Anomaly Detection      | Z-score (statistics)     | Fault detection                  |
+| Occupancy Prediction   | Random Forest (ML)       | Smart automation                 |
+| Energy Calculation     | Time-based computation   | Performance tracking             |
+
+---
+
+## Conclusion
+
+This system demonstrates how **Edge AI** can be applied to IoT lighting by combining:
+- Machine learning
+- Statistical analysis
+- Real-time processing
+
+The result is a **self-learning, energy-efficient, and intelligent lighting system** that adapts to both environment and user behavior.
+
+---
