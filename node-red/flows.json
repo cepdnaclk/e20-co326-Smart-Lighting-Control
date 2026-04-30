@@ -127,6 +127,17 @@
         "className":  ""
     },
     {
+        "id":  "0643bfa94ce60c41",
+        "type":  "ui_group",
+        "name":  "AI Control",
+        "tab":  "1bcbe5e524fda682",
+        "order":  2,
+        "disp":  true,
+        "width":  6,
+        "collapse":  false,
+        "className":  ""
+    },
+    {
         "id":  "263c30826030ea6c",
         "type":  "mqtt-broker",
         "name":  "",
@@ -278,6 +289,121 @@
                   ]
     },
     {
+        "id":  "8e9a6e1675df4c0b",
+        "type":  "mqtt in",
+        "z":  "2cadfa1aee21fc4f",
+        "name":  "AI Command",
+        "topic":  "sensors/group17/lighting/command",
+        "qos":  "2",
+        "datatype":  "auto-detect",
+        "broker":  "263c30826030ea6c",
+        "nl":  false,
+        "rap":  true,
+        "rh":  0,
+        "inputs":  0,
+        "x":  130,
+        "y":  260,
+        "wires":  [
+                      [
+                          "e4a0fbad90fafa73"
+                      ]
+                  ]
+    },
+    {
+        "id":  "e4a0fbad90fafa73",
+        "type":  "json",
+        "z":  "2cadfa1aee21fc4f",
+        "name":  "",
+        "property":  "payload",
+        "action":  "obj",
+        "pretty":  false,
+        "x":  190,
+        "y":  320,
+        "wires":  [
+                      [
+                          "fb48881c5f74869c",
+                          "f47d11065cca6a12",
+                          "49197519a89776ef"
+                      ]
+                  ]
+    },
+    {
+        "id":  "777b0ae5483261c9",
+        "type":  "ui_gauge",
+        "z":  "2cadfa1aee21fc4f",
+        "name":  "",
+        "group":  "0643bfa94ce60c41",
+        "order":  0,
+        "width":  0,
+        "height":  0,
+        "gtype":  "gage",
+        "title":  "Brightness Level",
+        "label":  "%",
+        "format":  "{{value}}",
+        "min":  0,
+        "max":  "100",
+        "colors":  [
+                       "#00b500",
+                       "#e6e600",
+                       "#ca3838"
+                   ],
+        "seg1":  "",
+        "seg2":  "",
+        "diff":  false,
+        "className":  "",
+        "x":  630,
+        "y":  260,
+        "wires":  [
+
+                  ]
+    },
+    {
+        "id":  "11bd735e72fc3769",
+        "type":  "ui_text",
+        "z":  "2cadfa1aee21fc4f",
+        "group":  "0643bfa94ce60c41",
+        "order":  1,
+        "width":  0,
+        "height":  0,
+        "name":  "",
+        "label":  "Occupancy",
+        "format":  "{{msg.payload}}",
+        "layout":  "row-spread",
+        "className":  "",
+        "style":  false,
+        "font":  "",
+        "fontSize":  16,
+        "color":  "#000000",
+        "x":  610,
+        "y":  420,
+        "wires":  [
+
+                  ]
+    },
+    {
+        "id":  "f851e20f0b96394c",
+        "type":  "ui_text",
+        "z":  "2cadfa1aee21fc4f",
+        "group":  "0643bfa94ce60c41",
+        "order":  2,
+        "width":  0,
+        "height":  0,
+        "name":  "",
+        "label":  "Scene",
+        "format":  "{{msg.payload}}",
+        "layout":  "row-spread",
+        "className":  "",
+        "style":  false,
+        "font":  "",
+        "fontSize":  16,
+        "color":  "#000000",
+        "x":  590,
+        "y":  340,
+        "wires":  [
+
+                  ]
+    },
+    {
         "id":  "4936fc8f5b13035d",
         "type":  "function",
         "z":  "2cadfa1aee21fc4f",
@@ -296,6 +422,74 @@
         "wires":  [
                       [
                           "0443a8af27854212"
+                      ]
+                  ]
+    },
+    {
+        "id":  "fb48881c5f74869c",
+        "type":  "function",
+        "z":  "2cadfa1aee21fc4f",
+        "name":  "Extract Brightness",
+        "func":  "msg.payload = msg.payload.brightness_pct;\nreturn msg;",
+        "outputs":  1,
+        "timeout":  0,
+        "noerr":  0,
+        "initialize":  "",
+        "finalize":  "",
+        "libs":  [
+
+                 ],
+        "x":  390,
+        "y":  260,
+        "wires":  [
+                      [
+                          "777b0ae5483261c9"
+                      ]
+                  ]
+    },
+    {
+        "id":  "f47d11065cca6a12",
+        "type":  "function",
+        "z":  "2cadfa1aee21fc4f",
+        "name":  "Extract Occupancy",
+        "func":  "msg.payload = msg.payload.occupancy;\nreturn msg;",
+        "outputs":  1,
+        "timeout":  0,
+        "noerr":  0,
+        "initialize":  "",
+        "finalize":  "",
+        "libs":  [
+
+                 ],
+        "x":  390,
+        "y":  380,
+        "wires":  [
+                      [
+                          "11bd735e72fc3769",
+                          "cb77feaff56e31a9"
+                      ]
+                  ]
+    },
+    {
+        "id":  "49197519a89776ef",
+        "type":  "function",
+        "z":  "2cadfa1aee21fc4f",
+        "name":  "Extract Scene",
+        "func":  "msg.payload = msg.payload.scene;\nreturn msg;",
+        "outputs":  1,
+        "timeout":  0,
+        "noerr":  0,
+        "initialize":  "",
+        "finalize":  "",
+        "libs":  [
+
+                 ],
+        "x":  380,
+        "y":  320,
+        "wires":  [
+                      [
+                          "f851e20f0b96394c",
+                          "5505c111ce6f347d"
                       ]
                   ]
     },
@@ -319,6 +513,42 @@
                       [
                           "58f15c04c85c2f68"
                       ]
+                  ]
+    },
+    {
+        "id":  "5505c111ce6f347d",
+        "type":  "debug",
+        "z":  "2cadfa1aee21fc4f",
+        "name":  "debug 1",
+        "active":  true,
+        "tosidebar":  true,
+        "console":  false,
+        "tostatus":  false,
+        "complete":  "false",
+        "statusVal":  "",
+        "statusType":  "auto",
+        "x":  600,
+        "y":  300,
+        "wires":  [
+
+                  ]
+    },
+    {
+        "id":  "cb77feaff56e31a9",
+        "type":  "debug",
+        "z":  "2cadfa1aee21fc4f",
+        "name":  "debug 2",
+        "active":  true,
+        "tosidebar":  true,
+        "console":  false,
+        "tostatus":  false,
+        "complete":  "false",
+        "statusVal":  "",
+        "statusType":  "auto",
+        "x":  600,
+        "y":  380,
+        "wires":  [
+
                   ]
     }
 ]
