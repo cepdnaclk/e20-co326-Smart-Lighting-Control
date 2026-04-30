@@ -25,5 +25,13 @@ while True:
     noise = random.uniform(-30, 30)
     lux   = base_lux + noise
     
+    # 3. Anomaly: sudden darkness (blackout / cloud)
+    if random.random() < 0.04:
+        lux = random.uniform(0, 50)
+
+    # 4. Anomaly: sudden brightness (flash / intruder)
+    if random.random() < 0.02:
+        lux = random.uniform(900, 1100)
+    
     t += 1
     time.sleep(3)
