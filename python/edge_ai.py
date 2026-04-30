@@ -100,3 +100,79 @@ def detect_anomaly(lux):
         else:
             return True, "FLASH (sudden brightness)"
     return False, "normal"
+
+
+# Feature 4: Occupancy Prediction 
+def predict_occupancy(lux, hour):
+    if len(history) < 2:
+        return "unknown"
+    lux_change = abs(lux - list(history)[-1])
+    features   = [[lux, lux_change, hour]]
+    prediction = occupancy_model.predict(features)[0]
+    return "occupied" if prediction == 1 else "empty"
+
+#  Feature 5: Energy Saving Calculator 
+def calculate_energy(brightness):
+    global total_saved_wh, last_time
+    now      = time.time()
+    elapsed  = (now - last_time) / 3600   # hours
+    last_time = now
+
+    actual_watts = BASELINE_WATTS * (brightness / 100)
+    saved_watts  = BASELINE_WATTS - actual_watts
+    total_saved_wh += saved_watts * elapsed
+
+    return {
+        "actual_watts":    round(actual_watts, 2),
+        "saved_watts":     round(saved_watts, 2),
+        "total_saved_wh":  round(total_saved_wh, 4),
+        "saving_pct":      round((saved_watts / BASELINE_WATTS) * 100, 1)
+    }
+
+# MQTT Message Handler 
+def on_message(client, userdata, msg):
+    data  = json.loads(msg.payload)
+    lux   = data["lux"]
+    hour  = data["hour_sim"]
+    history.append(lux)
+
+    # Run all 5 AI features
+    scene      = detect_scene(lux, hour)
+    update_learning(scene, lux)
+    brightness = get_brightness(lux, scene)
+    is_anomaly, reason = detect_anomaly(lux)
+    occupancy  = predict_occupancy(lux, hour)
+    energy     = calculate_energy(brightness)
+
+    # Publish lighting command
+    command = {
+        "brightness_pct": brightness,
+        "scene":          scene,
+        "occupancy":      occupancy,
+        "timestamp":      time.time()
+    }
+    client.publish(CMD_TOPIC, json.dumps(command))
+
+    # Publish energy data
+    client.publish(ENERGY_TOPIC, json.dumps(energy))
+
+    # Publish alert if anomaly
+    if is_anomaly:
+        alert = {
+            "status":    "ANOMALY",
+            "reason":    reason,
+            "lux":       lux,
+            "timestamp": time.time()
+        }
+        client.publish(ALERT_TOPIC, json.dumps(alert))
+        print(f"[ALERT] {reason} — lux={lux:.1f}")
+    else:
+        print(f"[AI] scene={scene}  brightness={brightness}%  occupancy={occupancy}  saved={energy['saving_pct']}%")
+
+# Start
+print("Edge AI started — listening for sensor data...")
+client = mqtt.Client()
+client.on_message = on_message
+client.connect(BROKER, 1883, 60)
+client.subscribe(SUB_TOPIC)
+client.loop_forever()
