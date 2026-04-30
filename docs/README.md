@@ -23,8 +23,7 @@ title: Smart Lighting Control
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Other Sub Topics](#other-sub-topics)
-3. [Links](#links)
+2. [Links](#links)
 
 ---
 
@@ -36,11 +35,11 @@ An Edge AI based smart lighting control system that simulates ambient light leve
 Sensor Simulator → Python Edge AI → MQTT Broker → Node-RED → Dashboard
 .....
 ## AI Features
-Scene Detection - detects Morning/Day/Evening/Night
-Adaptive Learning - learns lux thresholds over time
-Z-score Anomaly Detection - detects blackouts and flashes
-Occupancy Prediction - Random Forest ML model
-Energy Saving Calculator - calculates watts and % saved
+-Scene Detection - detects Morning/Day/Evening/Night
+-Adaptive Learning - learns lux thresholds over time
+-Z-score Anomaly Detection - detects blackouts and flashes
+-Occupancy Prediction - Random Forest ML model
+-Energy Saving Calculator - calculates watts and % saved
 .....
 ## Links
 
