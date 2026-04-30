@@ -32,6 +32,16 @@ while True:
     # 4. Anomaly: sudden brightness (flash / intruder)
     if random.random() < 0.02:
         lux = random.uniform(900, 1100)
+
+    # 5. Build payload
+    payload = {
+        "lux":       round(lux, 2),
+        "timestamp": time.time(),
+        "hour_sim":  round(hour_of_day, 1)
+    }
+
+    client.publish(TOPIC, json.dumps(payload))
+    print(f"[SIM] lux={lux:.1f}  hour={hour_of_day:.1f}")
     
     t += 1
     time.sleep(3)
