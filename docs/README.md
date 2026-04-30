@@ -43,7 +43,7 @@ Sensor Simulator → Python Edge AI → MQTT Broker → Node-RED → Dashboard
 .....
 ## Links
 
-- [Project Repository]([https://github.com/cepdnaclk/{{ page.repository-name }}](https://github.com/cepdnaclk/e20-co326-Smart-Lighting-Control)
+- [Project Repository](https://github.com/cepdnaclk/{{ page.repository-name }}](https://github.com/cepdnaclk/e20-co326-Smart-Lighting-Control)
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
 
