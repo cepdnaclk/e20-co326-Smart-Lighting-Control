@@ -2,27 +2,24 @@
 layout: home
 permalink: index.html
 
-# Please update this with your repository name and title
-repository-name: eYY-XXX-project-template
-title:
+
+repository-name: e20-co326-Smart-Lighting-Control
+title: Smart Lighting Control
 ---
 
-[comment]: # "This is the standard layout for the project, but you can clean this and use your own template"
 
-# Project Title
+
+# Smart Lighting Control
 
 ---
 
-<!-- 
-This is a sample image, to show how to add images to your page. To learn more options, please refer [this](https://projects.ce.pdn.ac.lk/docs/faq/how-to-add-an-image/)
 
-![Sample Image](./images/sample.png)
- -->
 
-## Team
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
--  eNumber, Name, [email](mailto:name@email.com)
+#### Team
+
+- E/20/089, Y.H. Edirimanna, [e20089@eng.pdn.ac.lk](mailto:e20089@eng.pdn.ac.lk)
+- E/20/361, Y.H. Senadheera, [e20361@eng.pdn.ac.lk](mailto:e20361@eng.pdn.ac.lk)
+- E/20/366, A.P.B.P. Senevirathna, [e20366@eng.pdn.ac.lk](mailto:e20366@eng.pdn.ac.lk)
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -33,19 +30,23 @@ This is a sample image, to show how to add images to your page. To learn more op
 
 ## Introduction
 
- description of the real world problem and solution, impact
+An Edge AI based smart lighting control system that simulates ambient light levels and automatically adjusts lighting brightness using AI. The system detects anomalies, predicts occupancy, and calculates energy savings in real time.
 
-## Other Sub Topics
-
+## System Architecture
+Sensor Simulator → Python Edge AI → MQTT Broker → Node-RED → Dashboard
 .....
-
+## AI Features
+Scene Detection - detects Morning/Day/Evening/Night
+Adaptive Learning - learns lux thresholds over time
+Z-score Anomaly Detection - detects blackouts and flashes
+Occupancy Prediction - Random Forest ML model
+Energy Saving Calculator - calculates watts and % saved
+.....
 ## Links
 
-- [Project Repository](https://github.com/cepdnaclk/{{ page.repository-name }}){:target="_blank"}
-- [Project Page](https://cepdnaclk.github.io/{{ page.repository-name}}){:target="_blank"}
+- [Project Repository]([https://github.com/cepdnaclk/{{ page.repository-name }}](https://github.com/cepdnaclk/e20-co326-Smart-Lighting-Control)
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
 
 
-[//]: # (Please refer this to learn more about Markdown syntax)
-[//]: # (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+
