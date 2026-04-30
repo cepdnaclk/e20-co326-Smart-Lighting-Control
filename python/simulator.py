@@ -21,5 +21,9 @@ while True:
     base_lux    = 500 + 450 * math.sin((hour_of_day - 6) * math.pi / 12)
     base_lux    = max(0, base_lux)
     
+    # 2. Add realistic noise
+    noise = random.uniform(-30, 30)
+    lux   = base_lux + noise
+    
     t += 1
     time.sleep(3)
