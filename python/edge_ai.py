@@ -61,3 +61,13 @@ def train_occupancy_model():
 
 occupancy_model = train_occupancy_model()
 
+# Feature 1: Scene Detection 
+def detect_scene(lux, hour):
+    if hour < 6 or hour >= 22:
+        return "Night"
+    elif hour < 10:
+        return "Morning"
+    elif hour < 17:
+        return "Day"
+    else:
+        return "Evening"
