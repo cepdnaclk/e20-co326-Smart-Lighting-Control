@@ -1,6 +1,7 @@
 # Smart Lighting Control - CO326 Edge AI Mini Project
 
 ## Group 17
+Report Path - https://github.com/cepdnaclk/e20-co326-Smart-Lighting-Control/blob/main/Goup_17.pdf
 
 ## Group Members
 - Member 1: E/20/089 Y.H. Edirimanna
