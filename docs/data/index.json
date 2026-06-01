@@ -1,28 +1,26 @@
 {
-    "title": "Smart Lighting control",
-    "team": [
+  "title": "Smart Lighting control",
+  "team": [
     {
-        "name": "Edirimanna Y.H.",
-        "email": "e20089@eng.pdn.ac.lk",
-        "eNumber": "E/20/089"
+      "name": "Edirimanna Y.H.",
+      "email": "e20089@eng.pdn.ac.lk",
+      "eNumber": "E/20/089"
     },
     {
-        "name": "Senadheera Y.H.",
-        "email": "e20361@eng.pdn.ac.lk",
-        "eNumber": "E/20/361"
+      "name": "Senadheera Y.H.",
+      "email": "e20361@eng.pdn.ac.lk",
+      "eNumber": "E/20/361"
     },
     {
-        "name": "Senevirathna A.P.B.P.",
-        "email": "e20366@eng.pdn.ac.lk",
-        "eNumber": "E/20/366"
+      "name": "Senevirathna A.P.B.P.",
+      "email": "e20366@eng.pdn.ac.lk",
+      "eNumber": "E/20/366"
     }
-    ],
-    "supervisors": [
+  ],
+  "supervisors": [
     {
-        "name": "Prof. Kamalanath Samarakoon",
-        "email": "kamalanath@eng.pdn.ac.lk"
-    },
-    
-    ],
-    
+      "name": "Prof. Kamalanath Samarakoon",
+      "email": "kamalanath@eng.pdn.ac.lk"
+    }
+  ]
 }
